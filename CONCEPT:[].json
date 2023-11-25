@@ -1,0 +1,60 @@
+CONCEPT:[]
+- Idea was to have a web application act as a portal to Revolut API for my personal account. 
+-- Within Revolut app, you can set specific transactions against a category defined by you.
+-- The web application would call the Revolut API when the app is opened, getting all the latest data/transactions against my account.
+-- This would also be provided with the defined category set against the transaction (if there is one set)
+-- If there would be no category automatically assigned (i.e. new merchant) you could set this category within the web app. 
+
+- Outside of the Revolut portal aspect, you can create a budget using a calculator, based on salary, expenses and budgetting against certain categories.
+-- This aspect wouldn't be fed into Revolut, more of an interface for your budgetting needs. 
+
+Looking at the API provided by Revolut, it appears to be very restrictive... Only would apply if you have a business account. 
+Even if they do provide access for a personal account, the transaction only provide limited data, no data against category based on the JSON response.
+
+Example response:
+{
+  "Data": {
+    "Transaction": [
+      {
+        "AccountId": "c362263a-xxxx-xxxx-xxxx-70ee3d4fede9",
+        "Amount": {
+          "Amount": "2.21",
+          "Currency": "EUR"
+        },
+        "Balance": {
+          "Amount": {
+            "Amount": "24.48",
+            "Currency": "EUR"
+          },
+          "CreditDebitIndicator": "Credit",
+          "Type": "InterimBooked"
+        },
+        "BookingDateTime": "2022-07-07T12:56:38.015220Z",
+        "ValueDateTime": "2022-07-07T12:56:38.015693Z",
+        "CreditDebitIndicator": "Credit",
+        "CurrencyExchange": {
+          "InstructedAmount": {
+            "Amount": "2.21",
+            "Currency": "EUR"
+          },
+          "SourceCurrency": "GBP",
+          "TargetCurrency": "EUR",
+          "UnitCurrency": "GBP",
+          "ExchangeRate": "1.1072646654"
+        },
+        "ProprietaryBankTransactionCode": {
+          "Code": "EXCHANGE",
+          "Issuer": "Revolut"
+        },
+        "Status": "Booked",
+        "TransactionId": "12345678-af30-a241-xxxx-ad09076be3b1",
+        "TransactionInformation": "To EUR"
+      }
+    ]
+  },
+  "Links": {
+    "Self": "https://oba.revolut.com/accounts/c362263a-xxxx-xxxx-xxxx-70ee3d4fede9/transactions",
+    "Next": "https://oba.revolut.com/accounts/c362263a-xxxx-xxxx-xxxx-70ee3d4fede9/transactions?fromBookingDateTime=2021-10-07T23:08:52.504313&toBookingDateTime=2022-03-02T14:59:47.858147"
+  },
+  "Meta": {}
+}
